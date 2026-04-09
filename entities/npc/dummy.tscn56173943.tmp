@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://tsntjry7x0x8"]
+
+[ext_resource type="Script" uid="uid://cuegdm7sjvfu8" path="res://scripts/entity/_LivingEntity.gd" id="1_2fv3h"]
+[ext_resource type="Script" uid="uid://cax6ufy4kj4sj" path="res://scripts/component/DefenceComponent.gd" id="1_3yelt"]
+[ext_resource type="Script" uid="uid://gam1ib4i5m6o" path="res://scripts/component/HealthComponent.gd" id="2_1hp0s"]
+[ext_resource type="Script" uid="uid://hhut4b2ya4jd" path="res://scripts/component/SpeedComponent.gd" id="3_2fv3h"]
+[ext_resource type="Script" uid="uid://wqd6vg1557jp" path="res://scripts/component/HurtBox.gd" id="5_6gcsi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hp0s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1hp0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fv3h"]
+
+[node name="Dummy" type="CharacterBody2D" unique_id=1505098892 node_paths=PackedStringArray("speedComponent")]
+script = ExtResource("1_2fv3h")
+speedComponent = NodePath("SpeedComponent")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=792022514]
+script = ExtResource("2_1hp0s")
+metadata/_custom_type_script = "uid://gam1ib4i5m6o"
+
+[node name="DefenceComponent" type="Node" parent="." unique_id=1939218288]
+script = ExtResource("1_3yelt")
+metadata/_custom_type_script = "uid://cax6ufy4kj4sj"
+
+[node name="SpeedComponent" type="Node" parent="." unique_id=1946085651]
+script = ExtResource("3_2fv3h")
+metadata/_custom_type_script = "uid://hhut4b2ya4jd"
+
+[node name="EntityCollision" type="CollisionShape2D" parent="." unique_id=579955620]
+shape = SubResource("RectangleShape2D_1hp0s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410974169]
+sprite_frames = SubResource("SpriteFrames_1hp0s")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1155247447]
+script = ExtResource("5_6gcsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1272387460]
+shape = SubResource("RectangleShape2D_2fv3h")
+
+[connection signal="hit" from="HurtBox" to="." method="_on_hurt_box_hit"]

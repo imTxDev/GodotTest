@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://c0lbddnbdop1m"]
+
+[ext_resource type="Script" uid="uid://wqofc7288d5e" path="res://scripts/entity/LivingEntity.gd" id="1_64oeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gh5ug"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_64oeg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"move_crouch",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move_jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move_right",
+"speed": 5.0
+}]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rvitd"]
+
+[sub_resource type="Animation" id="Animation_64oeg"]
+resource_name = "Test"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rvitd"]
+_data = {
+&"Test": SubResource("Animation_64oeg")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=934844055]
+script = ExtResource("1_64oeg")
+SPEED = 900.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=547151163]
+shape = SubResource("RectangleShape2D_gh5ug")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1664287490]
+sprite_frames = SubResource("SpriteFrames_64oeg")
+animation = &"move_crouch"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1157570310]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeBlendSpace2D_rvitd")
+anim_player = NodePath("AnimationPlayer")
+parameters/blend_position = Vector2(0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree" unique_id=92188740]
+libraries/ = SubResource("AnimationLibrary_rvitd")

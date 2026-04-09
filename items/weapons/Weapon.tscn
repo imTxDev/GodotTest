@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dhwn4sdwiwpy6"]
+
+[node name="Sword" type="Node2D" unique_id=1152649131]
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=1789848749]
