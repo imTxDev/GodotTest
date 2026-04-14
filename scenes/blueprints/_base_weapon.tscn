@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dvq4dr5a2lube"]
+
+[ext_resource type="Script" uid="uid://whp4jeanu34l" path="res://components/Attack.gd" id="1_lks13"]
+[ext_resource type="Script" uid="uid://dhbf5rjebc5k6" path="res://scripts/item/_base_weapon.gd" id="1_vemsi"]
+[ext_resource type="Script" uid="uid://g3uqakeoofye" path="res://scripts/component/Hitbox.gd" id="2_7nour"]
+[ext_resource type="Texture2D" uid="uid://0sc4smfvfia1" path="res://assets/sprites/Test_sprite_1.png" id="3_shkxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nour"]
+size = Vector2(90, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ddb0"]
+atlas = ExtResource("3_shkxu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81f4h"]
+atlas = ExtResource("3_shkxu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhesu"]
+atlas = ExtResource("3_shkxu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nhfp"]
+atlas = ExtResource("3_shkxu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2t8m4"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_8ddb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81f4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhesu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nhfp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="WeaponRoot" type="Node2D" unique_id=839585877]
+script = ExtResource("1_vemsi")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=860803469]
+script = ExtResource("2_7nour")
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=769583849]
+position = Vector2(45, 0)
+shape = SubResource("RectangleShape2D_7nour")
+disabled = true
+debug_color = Color(0.93452185, 0.1963425, 0.42549208, 0.41960785)
+
+[node name="WeaponAnimation" type="AnimatedSprite2D" parent="." unique_id=257804076]
+position = Vector2(10, 0)
+sprite_frames = SubResource("SpriteFrames_2t8m4")
+frame = 3
+frame_progress = 1.0
+
+[node name="AttackComponent" type="Node" parent="." unique_id=1380421148]
+script = ExtResource("1_lks13")
+metadata/_custom_type_script = "uid://whp4jeanu34l"

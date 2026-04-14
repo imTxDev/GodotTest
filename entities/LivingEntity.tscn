@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0lbddnbdop1m"]
 
 [ext_resource type="Script" uid="uid://wqofc7288d5e" path="res://scripts/entity/LivingEntity.gd" id="1_64oeg"]
+[ext_resource type="Script" uid="uid://bd4ct8bpcymr7" path="res://scripts/component/HPComponent.gd" id="2_rvitd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gh5ug"]
 
@@ -49,7 +50,7 @@ _data = {
 &"Test": SubResource("Animation_64oeg")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=934844055]
+[node name="Entity" type="CharacterBody2D" unique_id=934844055]
 script = ExtResource("1_64oeg")
 SPEED = 900.0
 
@@ -68,3 +69,7 @@ parameters/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree" unique_id=92188740]
 libraries/ = SubResource("AnimationLibrary_rvitd")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=251674026]
+script = ExtResource("2_rvitd")
+metadata/_custom_type_script = "uid://bd4ct8bpcymr7"

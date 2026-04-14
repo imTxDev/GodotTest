@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://hm4m2cblwfh5"]
+
+[ext_resource type="Script" uid="uid://bd4ct8bpcymr7" path="res://scripts/component/Health.gd" id="1_6e84v"]
+
+[sub_resource type="GDScript" id="GDScript_4dvvg"]
+resource_name = "Test"
+script/source = "extends Node2D
+
+@export var button: Button
+@export var health: Health
+@export var progress_bar: ProgressBar
+func _ready() -> void:
+	button.pressed.connect(health.on_took_damage.bind(10))
+	progress_bar.max_value = health.max_health
+	progress_bar.value = health.max_health
+	health.health_changed.connect(update_progress_bar)
+
+func update_progress_bar() -> void:
+	progress_bar.value = health.current_health
+"
+
+[node name="Main" type="Node2D" unique_id=486776976 node_paths=PackedStringArray("button", "health", "progress_bar")]
+script = SubResource("GDScript_4dvvg")
+button = NodePath("Button")
+health = NodePath("HealthComponent")
+progress_bar = NodePath("ProgressBar")
+
+[node name="Button" type="Button" parent="." unique_id=206366641]
+offset_left = 90.0
+offset_top = 281.0
+offset_right = 307.0
+offset_bottom = 342.0
+text = "Rotate"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1553692903]
+script = ExtResource("1_6e84v")
+heal_rate = 10
+metadata/_custom_type_script = "uid://bd4ct8bpcymr7"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=267492067]
+offset_left = 254.0
+offset_top = 176.0
+offset_right = 591.0
+offset_bottom = 203.0
+step = 1.0
+value = 100.0

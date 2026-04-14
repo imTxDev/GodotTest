@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://hm4m2cblwfh5"]
+
+[ext_resource type="Texture2D" uid="uid://dn0sijkk3llgf" path="res://icon.svg" id="1_6e84v"]
+
+[sub_resource type="GDScript" id="GDScript_4dvvg"]
+resource_name = "Test"
+script/source = "extends Node2D
+
+var icon: Sprite2D
+var button: Button
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	icon = get_node(\"/root/Main/Icon\")
+	button = get_node(\"/root/Main/Button\")
+	button.pressed.connect(icon.rotate.bind(1))
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_6e84v"]
+resource_name = "Icon"
+script/source = "extends Sprite2D
+
+func _ready() -> void:
+	pass
+"
+
+[node name="Main" type="Node2D" unique_id=486776976]
+script = SubResource("GDScript_4dvvg")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=531958116]
+position = Vector2(472, 127)
+texture = ExtResource("1_6e84v")
+script = SubResource("GDScript_6e84v")
+
+[node name="Button" type="Button" parent="." unique_id=206366641]
+offset_left = 90.0
+offset_top = 281.0
+offset_right = 307.0
+offset_bottom = 342.0
+text = "Rotate"
